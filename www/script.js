@@ -143,6 +143,7 @@ $(document).on('vclick', '#request', function() {
       console.log(global_about);
       console.log(global_name);
 
+      $('#request-details').empty();
       $('#request-details').append('<h3>' + global_name + '</h3>');
       $('#request-details').append('<p>' + global_about+ '</p>');
       $('#request-details').append('<button type="button"><a href="mailto:'  + global_email + '" class="btn btn-success"><h4>Email</h4></a></button>');
@@ -152,6 +153,12 @@ $(document).on('vclick', '#request', function() {
 });
 
 
+$(document).on('pagebeforeshow', '#home', function() {
+  var user = firebase.auth().currentUser;
+  if (user) {
+    $.mobile.changePage('#select-page', {transition: "slide", changeHash: false});
+  }
+})
 $(document).on('pagebeforeshow', '#requests-page', function(e, data) {
   $('#request-data').empty();
   firestore.collection('requests').get()
