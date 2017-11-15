@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>jQM Complex Demo</title>
+        <meta http-equiv='Content-Type' content='text/html; charset=utf-8' />
+        <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; minimum-scale=1.0; user-scalable=no; target-densityDpi=device-dpi" />
+        <link rel="stylesheet" href="jquery.mobile-1.4.2.min.css" />
+        <link rel="stylesheet" href="http://example.gajotres.net/iscrollview/jquery.mobile.iscrollview.css" />
+        <link rel="stylesheet" href="http://example.gajotres.net/iscrollview/jquery.mobile.iscrollview-pull.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="style.css">
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        <script src="http://example.gajotres.net/iscrollview/iscroll.js"></script>
+        <script src="http://example.gajotres.net/iscrollview/jquery.mobile.iscrollview.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase-firestore.js"></script>
+
+
+         <script src="script.js"></script>
+    </head>
+    <body>
+        <div data-role="page" id="home">
+            <div data-theme="a" data-role="header">
+                <h3>
+                   Siksha 
+                </h3>
+            </div>
+            <div class="button-container">
+            <h2 id="welcome">Welcome</h2>
+            <button type="button" id="login" class="btn btn-primary">Sign In</button>
+            <button type="button" id="signup" class="btn btn-primary">Sign Up</button>
+            </div>
+            <div data-role="content">
+                <div class="example-wrapper" data-iscroll>
+                    <ul data-role="listview" id="movie-list" data-theme="a">
+                    </ul>
+                </div>
+            </div>
+            <div data-theme="a" data-role="footer">
+                <h1>Copyright 2015</h1>
+            </div>
+        </div>
+
+        <!-- // Welcome Popup -->
+        <div data-role="popup" id="popupBasic">
+	          <p>Welcome !<p>
+        </div>
+
+        <!-- // Login Page -->
+        <div data-role="page" id="login-page">
+            <div data-theme="a" data-role="header">
+                <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a> 
+                <h3>
+                    Login
+                </h3>
+            </div>
+            <form class="login-form">
+  <div class="form-group">
+    <label for="input-email">Email address</label>
+    <input type="email" class="form-control" id="input-email" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="input-password">Password</label>
+    <input type="password" class="form-control" id="input-password" placeholder="Password">
+  </div>
+  <button type="submit" id="login-button" class="btn btn-primary">Sign In</button>
+</form>
+        </div>
+
+        <!-- // Signup Page -->
+        <div data-role="page" id="signup-page">
+            <div data-theme="a" data-role="header">
+                <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a> 
+                <h3>
+                   Sign Up 
+                </h3>
+            </div>
+            <form class="login-form">
+  <div class="form-group">
+    <label for="input-email">Full Name</label>
+    <input type="text" class="form-control" id="signup-input-name" aria-describedby="nameHelp" placeholder="Enter Full Name">
+  </div>
+  <div class="form-group">
+    <label for="input-email">Email address</label>
+    <input type="email" class="form-control" id="signup-input-email" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+  <div class="form-group">
+    <label for="input-password">Password</label>
+    <input type="password" class="form-control" id="signup-input-password" placeholder="Password">
+  </div>
+  <button type="submit" id="signup-button" class="btn btn-primary">Sign In</button>
+</form>
+        </div>
+
+        <!-- // Select Page -->
+        <div data-role="page" id="select-page">
+            <div data-theme="a" data-role="header">
+                <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>
+                <h3>
+                    Select
+                </h3>
+            </div>
+            <div class="select-container">
+            <div><h3 class="welcome-message"></h3></div>
+            <div><h3 class="welcome-message1">Are you a</h3></div>
+            <button type="button" id="benefactor-button" class="btn btn-success"><h3>Benefactor</h3></button>
+            <div><h3 class="welcome-message1">or</h3></div>
+            <button type="button" id="beneficiary-page" class="btn btn-success"><h3>Beneficiary</h3></button>
+            </div>
+        </div>
+
+        <!-- // Requests Page -->
+        <div data-role="page" id="requests-page">
+            <div data-theme="a" data-role="header">
+                <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>
+                <h3>
+                   Requests
+                </h3>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" id="request-data" data-theme="a">
+                </ul>
+            </div>
+        </div>
+        <!-- //Request Details Page -->
+        <div data-role="page" id="request-detail-page">
+            <div data-theme="a" data-role="header">
+                <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>
+                <h3>
+                    Request Details
+                </h3>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" id="request-details" data-theme="a">
+                </ul>
+            </div>
+        </div>
+        <!-- // Create Request -->
+        <div data-role="page" id="create-request">
+            <div data-theme="a" data-role="header">
+                <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>
+                <h3>
+                    Create Request
+                </h3>
+            </div><div>
+                <form class="request-form">
+                    <div class="form-group">
+                        <label for="input-email">What do you want ?</label>
+                        <input type="text" class="form-control" id="what-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-email">Why do you want it ?</label>
+                        <input type="text" class="form-control" id="why-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="input-password">Your Story</label>
+                        <textarea class="form-control" id="about-input"></textarea>
+                    </div>
+                    <button type="submit" id="request-button" class="btn btn-primary">Submit Request</button>
+                </form>
+
+            </div>
+        </div>
+        <!-- // Page Template -->
+        <div data-role="page" id="headline">
+            <div data-theme="a" data-role="header">
+                <a href="#home" class="ui-btn-left" data-transition="slide" data-direction="reverse">Back</a>
+                <h3>
+                    Movie Info
+                </h3>
+            </div>
+            <div data-role="content">
+                <ul data-role="listview" id="movie-data" data-theme="a">
+                </ul>
+            </div>
+        </div>
+        <!-- // Template End -->
+    </body>
+</html>
